@@ -6,10 +6,10 @@ char highString[30];
 
 int scoreCount(char *array){
 
-	char hexvals[(sizeof(array)-1)/2];
-	char xored[(sizeof(array)-1)/2];
+	char hexvals[60/2];
+	char xored[60/2];
 
-	for(int i = 0; i < sizeof(array); i+=2){
+	for(int i = 0; i < 60; i+=2){
 		 sscanf(&array[i], "%02hhx", &hexvals[i/2]);
 	}
 
@@ -22,10 +22,9 @@ int scoreCount(char *array){
             score++;
          }
       }
-      if(score >= highest-1){
-         for(int a = 0;a<sizeof(hexvals);a++)printf("%c",xored[a] );
+      if(score > highest){
          highest = score;
-     	 for(int b = 0; b < sizeof(highString); b++){
+     	 for(int b = 0; b < sizeof(highString)-1; b++){
      	 	highString[b] = xored[b];
      	 }
       }
