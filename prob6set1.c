@@ -1,12 +1,19 @@
 #include <stdio.h>
 int hamming(char *array, char *array1, int length){
 	int hamming = 0;
-	for(int i = 0; i < length * 8; i++){
-		int bit1 = (array[i/8] >> i) & 1;
-		int bit2 = (array1[i/8] >> i) & 1;
-		printf("%d %d", bit1, bit2);
-		if(bit1 != bit2){
-			hamming++;
+
+	for(int i = 0; i < length; i++){
+		char c = array[i];
+		char c1 = array1[i];
+		for(int j = 0; j < 8; j++){
+			char tmp = 1 << j;
+			int bit1 = (c1 & tmp)>>j;
+			int bit = (c & tmp)>>j;
+			if(bit1 != bit){
+				hamming++;
+			}
+			bit = bit>>1;
+			bit1 = bit1>>1;
 		}
 	}
 
